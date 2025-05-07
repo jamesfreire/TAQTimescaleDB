@@ -28,7 +28,7 @@ CREATE TABLE taq_trades (
 );
 ```
 
-Key design considerations:
+Design notes:
 - `time_stamp` stored as BIGINT to preserve nanosecond precision
 - Appropriate data types chosen to balance storage efficiency and query performance
 - VARCHAR fields sized appropriately for TAQ data standards
