@@ -38,7 +38,6 @@ ALTER TABLE taq_trades SET (
 
 -- Create a compression policy (compress chunks older than 1 day)
 SELECT add_compression_policy('taq_trades', BIGINT '86400000000000');  -- 1 day in nanoseconds
-                         chunk_time_interval => 3600000000000);
 
 
 -- Loading the ALL TRADE example file located at https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/EQY_US_ALL_TRADE_20250102.gz
