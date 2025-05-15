@@ -1,12 +1,12 @@
 # TAQ Data Implementation in TimescaleDB
 
-This repository contains SQL commands for efficiently loading, storing, and querying Trade and Quote (TAQ) data using TimescaleDB. The implementation is optimized for high-performance time-series analysis of financial market data.
+This repository contains SQL commands for efficiently loading, storing, and querying Trade and Quote (TAQ) data using TimescaleDB. The implementation is optimized for high-performance time-series analysis of financial market data. Currently it is only for loading the master trades file, but I'm looking to expand to importing NBBO (near bids best offer) data as well. 
 
 ## Technical Overview
 
 ### Schema Design
 
-The implementation uses a carefully designed schema that preserves the structure of TAQ data while optimizing for query performance:
+The implementation uses a schema that preserves the structure of TAQ data while optimizing for query performance:
 
 ```sql
 CREATE TABLE taq_trades (
