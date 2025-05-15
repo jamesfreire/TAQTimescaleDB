@@ -102,18 +102,11 @@ Here we use:
 
 ### Query Patterns
 
-This implementation is optimized for:
+This is optimized for:
 - Time-range queries for specific symbols
 - Time-range queries for specific exchanges
 - Aggregation queries over time windows
 - Point-in-time market state reconstruction
-
-### Maintenance
-
-Regular maintenance tasks include:
-- Monitoring compression effectiveness
-- Adjusting chunk intervals if needed based on query patterns
-- Creating additional indexes for specialized query patterns
 
 ## Usage Examples
 
@@ -142,7 +135,7 @@ GROUP BY minute_bucket, symbol
 ORDER BY minute_bucket;
 ```
 
-### Advanced Usage
+### Advanced Query
 
 Join with quotes table (if available) to analyze spreads:
 
