@@ -92,9 +92,9 @@ Efficient data loading using PostgreSQL's COPY command with Unix tools:
 \copy taq_trades FROM PROGRAM 'sed 1d /home/james/EQY_US_ALL_TRADE_20250102 | head -n -1' WITH (FORMAT CSV, DELIMITER '|');
 ```
 
-This approach:
-- Uses `sed` to remove header row
-- Uses `head` to remove potential trailing line
+Here we use:
+- `sed` to remove header row
+- `head` to remove potential trailing line
 - Leverages PostgreSQL's fast COPY mechanism
 - Handles pipe-delimited TAQ data files
 
@@ -107,13 +107,6 @@ This implementation is optimized for:
 - Time-range queries for specific exchanges
 - Aggregation queries over time windows
 - Point-in-time market state reconstruction
-
-### Hardware Recommendations
-
-For optimal performance:
-- SSD storage is strongly recommended
-- Sufficient RAM to hold active chunks (typically most recent 1-2 days)
-- Multiple CPU cores for parallel query execution
 
 ### Maintenance
 
