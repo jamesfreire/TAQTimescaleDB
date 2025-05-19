@@ -85,6 +85,7 @@ The compression configuration:
 - Automatically compresses data older than 1 day
 
 ### Data Ingestion
+Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/)
 
 Efficient data loading using PostgreSQL's COPY command with Unix tools:
 
