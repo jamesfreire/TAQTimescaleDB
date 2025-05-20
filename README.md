@@ -84,11 +84,31 @@ The compression configuration:
 - Orders compressed data by timestamp to preserve time-series characteristics
 - Automatically compresses data older than 1 day
 
-### Data Ingestion
+### Data Ingestion with Parallel Copy
 Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/)
 
-Efficient data loading using PostgreSQL's COPY command with Unix tools:
+The TAQ file will include a header and the last row will not contain data, so first we will need to trim these two lines out of the file we can use `sed`:
 
+```bash
+sed '1d;$d' EQY_US_ALL_TRADE_20250102 > CLEAN_EQY_US_ALL_TRADE_20250102
+```
+
+The fastest method of copying data into TimescaleDB is to utilize [timescaledb-parallel-copy](https://github.com/timescale/timescaledb-parallel-copy)
+
+```bash
+timescaledb-parallel-copy \
+    --connection "host=localhost user=postgres sslmode=disable dbname=postgres"\
+    --table taq_trades \
+    --file "CLEAN_EQY_US_ALL_TRADE_20250102"\
+    --workers 16 \
+    --batch-size 50000 \
+    --reporting-period 15s \
+    --split "|" \
+    --copy-options "CSV"
+```
+
+
+The alternative , but slower is to:
 ```sql
 \copy taq_trades FROM PROGRAM 'sed 1d /home/james/EQY_US_ALL_TRADE_20250102 | head -n -1' WITH (FORMAT CSV, DELIMITER '|');
 ```
@@ -96,7 +116,7 @@ Efficient data loading using PostgreSQL's COPY command with Unix tools:
 Here we use:
 - `sed` to remove header row
 - `head` to remove potential trailing line
-- Leverages PostgreSQL's fast COPY mechanism
+- PostgreSQL's COPY mechanism
 - Handles pipe-delimited TAQ data files
 
 ## Performance Considerations
