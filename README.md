@@ -1,6 +1,8 @@
 # TAQ Data Implementation in TimescaleDB
 
-This repository contains SQL commands for efficiently loading, storing, and querying Trade and Quote (TAQ) data using TimescaleDB. The implementation is optimized for high-performance time-series analysis of financial market data. Currently it is only for loading the master trades file, but I'm looking to expand to importing NBBO (near bids best offer) data as well. 
+This repository contains python scripts and SQL commands for efficiently loading, storing, and querying Trade and Quote (TAQ) data using [TimescaleDB](https://github.com/timescale/timescaledb). The implementation is optimized for high-performance time-series analysis of financial market data. Currently it is only for loading the master trades file, but I'm looking to expand to importing NBBO (near bids best offer) data as well. 
+
+Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/)
 
 ## Technical Overview
 
@@ -84,10 +86,33 @@ The compression configuration:
 - Orders compressed data by timestamp to preserve time-series characteristics
 - Automatically compresses data older than 1 day
 
-### Data Ingestion with Parallel Copy
-Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/)
+### Data Ingestion with Python Parallel Processing
 
-The TAQ file will include a header and the last row will not contain data, so first we will need to trim these two lines out of the file we can use `sed`:
+An alternative approach to data ingestion uses a Python script that splits the TAQ file into chunks and processes them in parallel using PostgreSQL's `\copy` command. While this method provides more control over the import process, it is significantly slower than the timescaledb-parallel-copy tool.
+
+The Python script (`taq_import.py`) performs the following operations:
+1. Preprocesses the TAQ data file to remove headers and footers
+2. Splits the file into configurable chunks (default: 8)
+3. Imports each chunk in parallel using multiprocessing
+4. Provides detailed progress reporting and error handling
+
+Usage:
+```bash
+# Basic usage with required file parameter
+./taq_import.py -f /path/to/EQY_US_ALL_TRADE_20250102
+
+# Specify custom number of chunks
+./taq_import.py -f /path/to/EQY_US_ALL_TRADE_20250102 -c 16
+
+# View help
+./taq_import.py -h
+```
+
+**Performance Note**: This Python-based approach took over 20 minutes to import a full day's TAQ data file, compared to the much faster timescaledb-parallel-copy method described below. The Python script is useful for environments where timescaledb-parallel-copy is not available or when additional preprocessing logic is needed.
+
+### Data Ingestion with Parallel Copy
+
+The TAQ trades file will include a header and the last row will not contain data, so first we will need to trim these two lines out of the file we can use `sed`:
 
 ```bash
 sed '1d;$d' EQY_US_ALL_TRADE_20250102 > CLEAN_EQY_US_ALL_TRADE_20250102
@@ -176,4 +201,3 @@ WHERE t.symbol = 'AAPL'
 AND t.time_stamp BETWEEN 1609459200000000000 AND 1609459300000000000
 ORDER BY t.time_stamp;
 ```
-
