@@ -1,17 +1,8 @@
 # TAQ NBBO TimescaleDB Implementation
+### **Processing 440mm Daily Records with Nanosecond Precision in TimescaleDB**
 
-## Overview
-High-performance financial market data pipeline processing 440M+ daily NBBO records with nanosecond precision.
+High-performance financial market data pipeline processing 440M+ daily NBBO records with nanosecond precision. This repository contains python scripts and SQL commands for efficiently loading, storing, and querying TAQ NBBO records, using [TimescaleDB](https://github.com/timescale/timescaledb).
 
-## Quick Start
-1. Clone this repository
-2. Follow the workflow instructions in `taq_nbbo_timescaledb.sql` file
-
-## Files
-- `taq_nbbo_timescaledb.sql` - Complete database setup, functions, and example queries
-
-
-# **Processing 440mm Daily Records with Nanosecond Precision in TimescaleDB**
 
 ## **Introduction**
 
