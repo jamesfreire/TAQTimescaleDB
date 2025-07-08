@@ -1,6 +1,6 @@
 # TAQ Data Implementation in TimescaleDB
 
-This repository contains python scripts and SQL commands for efficiently loading, storing, and querying Trade and Quote (TAQ) data using [TimescaleDB](https://github.com/timescale/timescaledb). The implementation is optimized for high-performance time-series analysis of financial market data. Currently it is only for loading the master trades file, but I'm looking to expand to importing NBBO (near bids best offer) data as well. 
+This repository contains python scripts and SQL commands for efficiently loading, storing, and querying Trade and Quote (TAQ) data using [TimescaleDB](https://github.com/timescale/timescaledb). The implementation is optimized for high-performance time-series analysis of financial market data.
 
 Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/)
 
