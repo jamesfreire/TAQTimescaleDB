@@ -9,7 +9,7 @@ If you're looking to analyze TAQ (Trades and Quotes) data without the cost and c
 
 Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.com/Historical%20Data%20Samples/DAILY%20TAQ/)
 
-**Successfully tested on:** MacBook Pro M3, importing 450M+ NBBO records in ~8 minutes.
+**Successfully tested on:** MacBook Pro M3.
 ## 📊 What You Can Import
 
 |Status | Data Type | Daily Volume | Compressed Size | Import Time* | Use Cases |
@@ -21,14 +21,14 @@ Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.c
 
 
 
-## ✨ TimescaleDB's Secret Weapons
+##  TimescaleDB's Secret Weapons
 
-### 🔄 Hypercore Architecture
+###  Hypercore Architecture
 - **Row Storage**: Recent data optimized for fast inserts/updates
 - **Column Storage**: Historical data compressed in columnar format  
 - **Automatic Transition**: Data seamlessly moves between formats based on age
 
-### 🧩 Intelligent Chunking
+###  Intelligent Chunking
 - Data automatically partitioned by time intervals (default 7-day chunks)
 - Enables parallel processing and efficient compression
 - Perfect for TAQ data's time-series nature
@@ -50,7 +50,7 @@ Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.c
 - **Daily spread analysis**: <500ms
 - **Cross-market analysis**: 2-5 seconds
 
-## 🧩 Solving TAQ's Unique Challenges
+##  Solving TAQ's Unique Challenges
 
 ### The Timestamp Problem
 TAQ data has nanosecond precision but no date fields. Our solution:
@@ -73,7 +73,7 @@ sed "s/^/2025-01-02|/" CLEAN_EQY_US_ALL_NBBO_20250102 > PROCESSED_FILE
 ✅ Optimize chunk intervals for your query patterns  
 ✅ Enable compression for historical data  
 
-## 💼 Real-World Use Cases
+##  Real-World Use Cases
 
 ### Market Microstructure Research
 ```sql
@@ -99,7 +99,7 @@ WHERE venue_market_share > 0.05;
 ```
 
 
-## 🎯 What Makes This Different?
+##  What Makes This Different?
 
 ### vs. KDB+
 - **Cost**: Open-source vs. expensive licensing
@@ -113,22 +113,22 @@ WHERE venue_market_share > 0.05;
 - **Production Ready**: Error handling, monitoring, validation
 - **Well Documented**: Step-by-step tutorials and examples
 
-## 📚 Additional Resources
+##  Additional Resources
 
 - **[NYSE TAQ Documentation](https://www.nyse.com/market-data/historical/daily-taq)** - Official data specification
 - **[TimescaleDB Docs](https://docs.timescale.com/)** - Database documentation
 - **[Sample Data Download](https://www.nyse.com/market-data/historical)** - Get started with real data
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Areas where help is needed:
 
-- 🔧 **Additional TAQ file types** (Admin, LULD, Master)
-- 📊 **More analytical examples** and notebooks
-- 🐛 **Bug fixes** and performance improvements
-- 📖 **Documentation** improvements
+-  **Additional TAQ file types** (Admin, LULD, Master)
+-  **More analytical examples** and notebooks
+-  **Bug fixes** and performance improvements
+-  **Documentation** improvements
 
-## ⭐ Star This Repository
+## Star This Repository
 
 If this repository helps your TAQ analysis work, please give it a star! It helps others discover this cost-effective alternative to expensive financial data solutions.
 
