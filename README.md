@@ -14,8 +14,8 @@ Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.c
 
 |Status | Data Type | Daily Volume | Compressed Size | Import Time* | Use Cases |
 |-----------|-----------|--------------|-----------------|--------------|-----------|
-|**Done** | [**Trades**](taq_trade/readme.md) | 70M records | 2.4GB | 8 min | VWAP, execution analysis, volume studies |
-|**Done** | [**NBBO**](taq_nbbo/readme.md) | 330M records | 11GB | 15 min | Spread analysis, best execution, liquidity |
+|**Done** | [**Trades**](taq_trade/readme.md) | 70M records | 2.4GB | 1 min | VWAP, execution analysis, volume studies |
+|**Done** | [**NBBO**](taq_nbbo/readme.md) | 330M records | 11GB | 8 min | Spread analysis, best execution, liquidity |
 |**Development**| **Quotes** | 1.9B records | 38GB | - | Market microstructure, order book reconstruction |
 |**Development**| **Master** | 11.7K records | 675KB | - | Security metadata, symbol mapping |
 
