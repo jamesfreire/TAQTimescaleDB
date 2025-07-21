@@ -33,7 +33,7 @@ Example TAQ data files can be [downloaded from the NYSE site](https://ftp.nyse.c
 - Enables parallel processing and efficient compression
 - Perfect for TAQ data's time-series nature
 
-### 🗜️ Native Compression
+###  Native Compression
 - **Up to 95% compression ratios** on TAQ data
 - Dramatically reduces storage costs
 - Maintains excellent query performance
